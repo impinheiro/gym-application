@@ -3,13 +3,10 @@ package dev.alfateia.gym_space.infrastructure.persistence.user;
 
 import dev.alfateia.gym_space.core.enums.Gender;
 import dev.alfateia.gym_space.core.enums.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity(name= "users")
-public class UserEntity {
+@MappedSuperclass
+public abstract class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

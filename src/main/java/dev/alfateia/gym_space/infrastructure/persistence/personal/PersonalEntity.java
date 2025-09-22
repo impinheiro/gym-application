@@ -1,20 +1,36 @@
 package dev.alfateia.gym_space.infrastructure.persistence.personal;
 
+import dev.alfateia.gym_space.core.enums.Gender;
+import dev.alfateia.gym_space.core.enums.Role;
+import dev.alfateia.gym_space.infrastructure.persistence.user.UserEntity;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
-@Entity(name= "personal")
-public class PersonalEntity {
+@Entity
+@Table(name = "personal")
+public class PersonalEntity extends UserEntity {
 
+    @ElementCollection
     private List<Long> clientsId;
+
+    @ElementCollection
     private List<Long> groupsId;
     private String description;
     private float score;
+
+    @ElementCollection
     private List<Long> trainingPlanId;
     private List<Long> exercisesId;
 
-    public PersonalEntity(List<Long> clientsId, List<Long> groupsId, String description, float score, List<Long> trainingPlanId, List<Long> exercisesId) {
+    public PersonalEntity(Long id, String name, String email, String password, Gender gender, Role role) {
+        super(id, name, email, password, gender, role);
+    }
+
+    public PersonalEntity(Long id, String name, String email, String password, Gender gender, Role role, List<Long> clientsId, List<Long> groupsId, String description, float score, List<Long> trainingPlanId, List<Long> exercisesId) {
+        super(id, name, email, password, gender, role);
         this.clientsId = clientsId;
         this.groupsId = groupsId;
         this.description = description;
